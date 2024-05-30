@@ -12,7 +12,7 @@ public class App {
 
         FiltrarProdutos filtro = new FiltrarProdutos(produtos);
 
-        List<Produto> produtosFiltrados = filtro.listarProdutosAcimaDe50(produtos);
+        List<Produto> produtosFiltrados = filtro.listarProdutosAcimaDe50();
 
         System.out.println("Nomes dos produtos com preço acima de 50.0:");
         produtosFiltrados.stream()
