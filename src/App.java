@@ -101,6 +101,7 @@ public class App {
                 break;
         }
 
+
         // Fecha o objeto scanner
         scan.close();
     }
