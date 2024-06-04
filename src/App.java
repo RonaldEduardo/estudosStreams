@@ -94,6 +94,12 @@ public class App {
                 // Se o usuário escolher 8, agrupa os produtos por preço acima de 50 e imprime
                 agruparProduto.listarProdutosAcima50();
                 break;
+            case 9:
+                // Se o usuário escolher 9, concatenar os nomes dos produtos
+                ConcatenarProdutos concatenarProdutos = new ConcatenarProdutos(produtos);
+                String nomesConcatenados = concatenarProdutos.concatenarNomes();
+                System.out.println("Nomes dos produtos concatenados: " + nomesConcatenados);
+                break;
 
             default:
                 // Se o usuário escolher uma opção inválida, imprime uma mensagem de erro
