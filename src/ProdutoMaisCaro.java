@@ -1,11 +1,17 @@
 import java.util.List;
 import java.util.OptionalDouble;
 
-public class ProdutoMaisCaro {
+public class ProdutoMaisCaro implements ProdutoService
+{
   private final List<Produto> produtos;
 
   public ProdutoMaisCaro(List<Produto> produtos) {
     this.produtos = produtos;
+  }
+
+  @Override
+  public List<Produto> getProdutos() {
+    return produtos;
   }
 
   public OptionalDouble FiltraProdutoMaisCaro() {
