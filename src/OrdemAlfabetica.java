@@ -13,9 +13,18 @@ public class OrdemAlfabetica implements ProdutoService {
     return produtos;
   }
 
-  public List<Produto> ordemAlfabetica() {
+  private List<Produto> ordemAlfabetica() {
     return getProdutos().stream()
         .sorted((produto1, produto2) -> produto1.getNome().compareTo(produto2.getNome()))
         .collect(Collectors.toList());
+  }
+
+  public void listarProdutosOrdemAlfabetica() {
+    List<Produto> produtosOrdenados = ordemAlfabetica();
+
+    System.out.println("Nomes dos produtos em ordem alfabética:");
+    produtosOrdenados.stream()
+        .map(Produto::getNome)
+        .forEach(nome -> System.out.println(nome));
   }
 }

@@ -5,6 +5,10 @@ public class App {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         int escolhaUser = 0;
+        final String MENU = "Escolha uma opção:\n" + "1 - Filtrar produtos com preço acima de 50\n"
+                + "2 - Somar preços de todos os produtos\n" + "3 - Encontrar produto mais caro\n"
+                + "4 - Ordenar produtos em ordem alfabética\n" + "5 - Aplicar desconto de 10%% a todos os produtos\n"
+                + "6 - Contar a quantidade de produtos com preço entre 30 e 100\n";
 
         List<Produto> produtos = List.of(
                 // Cria uma lista de produtos com seus nomes e preços
@@ -34,9 +38,11 @@ public class App {
         // Cria um novo objeto para aplicar desconto a todos os produtos
         AplicaDesconto desconto = new AplicaDesconto(produtos);
 
+        // Cria um novo objeto para contar a quantidade de produtos com preço entre 30 e 100
+        ContarProdutos contarProdutos = new ContarProdutos(produtos);
+
         // Imprime as opções para o usuário
-        System.out.printf(
-                "Escolha uma opção:\n1 - Listar produtos com preço acima de 50\n2 - Somar preços dos produtos\n3 - Encontrar produto mais caro\n4 - Ordenar produtos em ordem alfabética\n5 - Aplicar desconto de 10%% a todos os produtos\n");
+        System.out.printf(MENU);
 
         // Obtém a escolha do usuário
         escolhaUser = scan.nextInt();
@@ -44,14 +50,8 @@ public class App {
         // Declaração switch para lidar com a escolha do usuário
         switch (escolhaUser) {
             case 1:
-                // Se o usuário escolher 1, filtra os produtos com preço acima de 50
-                List<Produto> produtosFiltrados = filtro.listarProdutosAcimaDe50();
-
-                // Imprime os nomes dos produtos com preço acima de 50
-                System.out.println("Nomes dos produtos com preço acima de 50.0:");
-                produtosFiltrados.stream()
-                        .map(Produto::getNome)
-                        .forEach(nome -> System.out.println(nome));
+                // Se o usuário escolher 1, filtra os produtos com preço acima de 50 e imprime
+                filtro.listarProdutosAcimaDe50();
                 break;
             case 2:
                 // Se o usuário escolher 2, soma os preços de todos os produtos
@@ -64,14 +64,8 @@ public class App {
                 System.out.println("Produto mais caro: " + maisCaro);
                 break;
             case 4:
-                // Se o usuário escolher 4, ordena os produtos em ordem alfabética
-                List<Produto> produtosOrdenados = ordemAlfabetica.ordemAlfabetica();
-
-                // Imprime os nomes dos produtos em ordem alfabética
-                System.out.println("Nomes dos produtos em ordem alfabética:");
-                produtosOrdenados.stream()
-                        .map(Produto::getNome)
-                        .forEach(nome -> System.out.println(nome));
+                // Se o usuário escolher 4, ordena os produtos em ordem alfabética e imprime
+                ordemAlfabetica.listarProdutosOrdemAlfabetica();
                 break;
             case 5:
                 // Se o usuário escolher 5, aplica desconto de 10% a todos os produtos
@@ -81,6 +75,11 @@ public class App {
                 System.out.println("Nomes e preços dos produtos com desconto:");
                 produtosComDesconto.stream()
                         .forEach(produto -> System.out.println(produto.getNome() + " - " + produto.getPreco()));
+                break;
+            case 6:
+                // Se o usuário escolher 6, conta a quantidade de produtos com preço entre 30 e 100
+                int quantidade = contarProdutos.contarFaixaDePreco();
+                System.out.println("Quantidade de produtos com preço entre 30 e 100: " + quantidade);
                 break;
 
             default:
