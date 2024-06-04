@@ -1,23 +1,41 @@
 import java.util.List;
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int escolhaUser = 0;
 
         List<Produto> produtos = List.of(
-                new Produto("Coca", 12.90),
-                new Produto("Sprite", 11.90),
-                new Produto("Pepsi", 11.50),
-                new Produto("Fanta", 9.50),
-                new Produto("Guarana", 50.90));
+                new Produto("Coca", 1.0),
+                new Produto("Sprite", 11.0),
+                new Produto("Pepsi", 11.0),
+                new Produto("Fanta", 9.0),
+                new Produto("Guarana", 50.50));
 
         FiltrarProdutos filtro = new FiltrarProdutos(produtos);
+        SomarProdutos somador = new SomarProdutos(produtos);
 
-        List<Produto> produtosFiltrados = filtro.listarProdutosAcimaDe50();
+        System.out.printf("Escolha uma opção: %n1 - Listar produtos com preço acima de 50.0 %n2 - Somar preços dos produtos %n");
+        escolhaUser = scan.nextInt();
+        switch (escolhaUser) {
+            case 1:
+                List<Produto> produtosFiltrados = filtro.listarProdutosAcimaDe50();
 
-        System.out.println("Nomes dos produtos com preço acima de 50.0:");
-        produtosFiltrados.stream()
-                .map(Produto::getNome)
-                .forEach(nome -> System.out.println(nome));
+                System.out.println("Nomes dos produtos com preço acima de 50.0:");
+                produtosFiltrados.stream()
+                        .map(Produto::getNome)
+                        .forEach(nome -> System.out.println(nome));
+                break;
+            case 2:
+                double total = somador.somarPrecos();
+                System.out.println("Total dos produtos: " + total);
+                break;
 
+            default:
+                break;
+        }
+
+        scan.close();
     }
 }
