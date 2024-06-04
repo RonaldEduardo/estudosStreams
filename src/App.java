@@ -9,7 +9,7 @@ public class App {
                 + "2 - Somar preços de todos os produtos\n" + "3 - Encontrar produto mais caro\n"
                 + "4 - Ordenar produtos em ordem alfabética\n" + "5 - Aplicar desconto de 10%% a todos os produtos\n"
                 + "6 - Contar a quantidade de produtos com preço entre 30 e 100\n" + "7 - Agrupar produtos por preço até 50\n"
-                + "8 - Agrupar produtos por preço acima de 50\n";
+                + "8 - Agrupar produtos por preço acima de 50\n" + "9 - Concatenar nomes dos produtos\n";
 
         List<Produto> produtos = List.of(
                 // Cria uma lista de produtos com seus nomes e preços
@@ -44,6 +44,9 @@ public class App {
 
         // Cria um novo objeto para agrupar os produtos por preço
         AgruparProduto agruparProduto = new AgruparProduto(produtos);
+
+        // Cria um novo objeto para concatenar os nomes dos produtos
+        ConcatenarProdutos concatenarProdutos = new ConcatenarProdutos(produtos);
 
         // Imprime as opções para o usuário
         System.out.printf(MENU);
@@ -96,7 +99,6 @@ public class App {
                 break;
             case 9:
                 // Se o usuário escolher 9, concatenar os nomes dos produtos
-                ConcatenarProdutos concatenarProdutos = new ConcatenarProdutos(produtos);
                 String nomesConcatenados = concatenarProdutos.concatenarNomes();
                 System.out.println("Nomes dos produtos concatenados: " + nomesConcatenados);
                 break;

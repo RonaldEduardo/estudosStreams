@@ -13,7 +13,7 @@ public class ProdutoMaisCaro implements ProdutoService
   public List<Produto> getProdutos() {
     return produtos;
   }
-
+  // Filtra o produto mais caro
   public OptionalDouble FiltraProdutoMaisCaro() {
     return produtos.stream()
         .mapToDouble(Produto::getPreco)
