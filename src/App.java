@@ -16,7 +16,7 @@ public class App {
                 new Produto("Hamburger", 45.0),
                 new Produto("Hot Dog", 15.0),
                 new Produto("Pastel", 25.0),
-                new Produto("Salada", 10.0));
+                new Produto("Salada", 100.0));
 
         // Cria um novo objeto de filtro com a lista de produtos
         FiltrarProdutos filtro = new FiltrarProdutos(produtos);
@@ -31,9 +31,12 @@ public class App {
         // Cria um novo objeto para ordenar os produtos em ordem alfabética
         OrdemAlfabetica ordemAlfabetica = new OrdemAlfabetica(produtos);
 
+        // Cria um novo objeto para aplicar desconto a todos os produtos
+        AplicaDesconto desconto = new AplicaDesconto(produtos);
+
         // Imprime as opções para o usuário
         System.out.printf(
-                "Escolha uma opção:\n1 - Listar produtos com preço acima de 50\n2 - Somar preços dos produtos\n3 - Encontrar produto mais caro\n4 - Ordenar produtos em ordem alfabética\n");
+                "Escolha uma opção:\n1 - Listar produtos com preço acima de 50\n2 - Somar preços dos produtos\n3 - Encontrar produto mais caro\n4 - Ordenar produtos em ordem alfabética\n5 - Aplicar desconto de 10%% a todos os produtos\n");
 
         // Obtém a escolha do usuário
         escolhaUser = scan.nextInt();
@@ -69,6 +72,15 @@ public class App {
                 produtosOrdenados.stream()
                         .map(Produto::getNome)
                         .forEach(nome -> System.out.println(nome));
+                break;
+            case 5:
+                // Se o usuário escolher 5, aplica desconto de 10% a todos os produtos
+                List<Produto> produtosComDesconto = desconto.aplicaDesconto();
+
+                // Imprime os nomes e preços dos produtos com desconto
+                System.out.println("Nomes e preços dos produtos com desconto:");
+                produtosComDesconto.stream()
+                        .forEach(produto -> System.out.println(produto.getNome() + " - " + produto.getPreco()));
                 break;
 
             default:

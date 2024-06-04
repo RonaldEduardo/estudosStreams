@@ -1,6 +1,10 @@
 public class Produto {
   private final String nome;
-  private final double preco;
+  private double preco;
+
+  public void setPreco(double preco) {
+    this.preco = preco;
+  }
 
   public Produto(String nome, double preco){
     this.nome = nome;
