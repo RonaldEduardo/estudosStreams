@@ -8,7 +8,8 @@ public class App {
         final String MENU = "Escolha uma opção:\n" + "1 - Filtrar produtos com preço acima de 50\n"
                 + "2 - Somar preços de todos os produtos\n" + "3 - Encontrar produto mais caro\n"
                 + "4 - Ordenar produtos em ordem alfabética\n" + "5 - Aplicar desconto de 10%% a todos os produtos\n"
-                + "6 - Contar a quantidade de produtos com preço entre 30 e 100\n";
+                + "6 - Contar a quantidade de produtos com preço entre 30 e 100\n" + "7 - Agrupar produtos por preço até 50\n"
+                + "8 - Agrupar produtos por preço acima de 50\n";
 
         List<Produto> produtos = List.of(
                 // Cria uma lista de produtos com seus nomes e preços
@@ -40,6 +41,9 @@ public class App {
 
         // Cria um novo objeto para contar a quantidade de produtos com preço entre 30 e 100
         ContarProdutos contarProdutos = new ContarProdutos(produtos);
+
+        // Cria um novo objeto para agrupar os produtos por preço
+        AgruparProduto agruparProduto = new AgruparProduto(produtos);
 
         // Imprime as opções para o usuário
         System.out.printf(MENU);
@@ -80,6 +84,15 @@ public class App {
                 // Se o usuário escolher 6, conta a quantidade de produtos com preço entre 30 e 100
                 int quantidade = contarProdutos.contarFaixaDePreco();
                 System.out.println("Quantidade de produtos com preço entre 30 e 100: " + quantidade);
+                break;
+
+            case 7:
+                // Se o usuário escolher 7, agrupa os produtos por preço até 50 e imprime
+                agruparProduto.listarProdutosAte50();
+                break;
+            case 8:
+                // Se o usuário escolher 8, agrupa os produtos por preço acima de 50 e imprime
+                agruparProduto.listarProdutosAcima50();
                 break;
 
             default:
