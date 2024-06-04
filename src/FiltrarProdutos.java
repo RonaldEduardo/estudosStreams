@@ -3,7 +3,7 @@ import java.util.stream.Collectors;
 
 class FiltrarProdutos{
 
-  private List<Produto> produtos;
+  private final List<Produto> produtos;
 
   public FiltrarProdutos(List<Produto> produtos) {
     this.produtos = produtos;
