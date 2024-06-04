@@ -8,10 +8,15 @@ public class App {
 
         List<Produto> produtos = List.of(
                 // Cria uma lista de produtos com seus nomes e preços
-                new Produto("Sprite", 121.0),
+                new Produto("Sprite", 131.0),
                 new Produto("Pepsi", 11.0),
                 new Produto("Fanta", 9.0),
-                new Produto("Guarana", 50.50));
+                new Produto("Guarana", 50.50),
+                new Produto("Pizza", 60.0),
+                new Produto("Hamburger", 45.0),
+                new Produto("Hot Dog", 15.0),
+                new Produto("Pastel", 25.0),
+                new Produto("Salada", 10.0));
 
         // Cria um novo objeto de filtro com a lista de produtos
         FiltrarProdutos filtro = new FiltrarProdutos(produtos);
@@ -23,9 +28,12 @@ public class App {
         // produtos
         ProdutoMaisCaro produtoMaisCaro = new ProdutoMaisCaro(produtos);
 
+        // Cria um novo objeto para ordenar os produtos em ordem alfabética
+        OrdemAlfabetica ordemAlfabetica = new OrdemAlfabetica(produtos);
+
         // Imprime as opções para o usuário
         System.out.printf(
-                "Escolha uma opção:\n1 - Listar produtos acima de 50\n2 - Somar preços\n3 - Produto mais caro\n");
+                "Escolha uma opção:\n1 - Listar produtos com preço acima de 50\n2 - Somar preços dos produtos\n3 - Encontrar produto mais caro\n4 - Ordenar produtos em ordem alfabética\n");
 
         // Obtém a escolha do usuário
         escolhaUser = scan.nextInt();
@@ -51,6 +59,16 @@ public class App {
                 // Se o usuário escolher 3, encontra o produto mais caro
                 double maisCaro = produtoMaisCaro.FiltraProdutoMaisCaro().getAsDouble();
                 System.out.println("Produto mais caro: " + maisCaro);
+                break;
+            case 4:
+                // Se o usuário escolher 4, ordena os produtos em ordem alfabética
+                List<Produto> produtosOrdenados = ordemAlfabetica.ordemAlfabetica();
+
+                // Imprime os nomes dos produtos em ordem alfabética
+                System.out.println("Nomes dos produtos em ordem alfabética:");
+                produtosOrdenados.stream()
+                        .map(Produto::getNome)
+                        .forEach(nome -> System.out.println(nome));
                 break;
 
             default:
